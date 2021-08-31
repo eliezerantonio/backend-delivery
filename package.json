@@ -1,0 +1,24 @@
+{
+  "name": "backend-delivery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliezerantonio/backend-delivery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliezerantonio/backend-delivery/issues"
+  },
+  "homepage": "https://github.com/eliezerantonio/backend-delivery#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "^0.0.1-security"
+  }
+}
