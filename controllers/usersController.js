@@ -5,7 +5,7 @@ module.exports = {
     try {
       const data = await User.getAll();
 
-      return res.status(201).json(data);
+      return res.status(200).json(data);
     } catch (error) {
       console.log(`Errror: ${error}`);
       return res
