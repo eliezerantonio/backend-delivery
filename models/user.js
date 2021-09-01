@@ -14,7 +14,6 @@ User.create = (user) => {
 	name,
 	lastname,
 	phone,
-    image
 	password,
 	created_at,
 	updated_at)
@@ -26,7 +25,8 @@ User.create = (user) => {
 		$4,
 		$5,
 		$6,
-		$7,
+		$7
+	
 		
 	) RETURNING id`;
 
@@ -35,7 +35,7 @@ User.create = (user) => {
     user.name,
     user.lastname,
     user.phone,
-    user.image,
+
     user.password,
     new Date(),
     new Date(),
