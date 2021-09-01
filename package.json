@@ -18,7 +18,11 @@
   "homepage": "https://github.com/eliezerantonio/backend-delivery#readme",
   "description": "",
   "dependencies": {
+    "bluebird": "^3.7.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "http": "^0.0.1-security"
+    "http": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "pg-promise": "^10.11.0"
   }
 }
