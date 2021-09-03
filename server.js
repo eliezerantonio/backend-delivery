@@ -23,7 +23,7 @@ app.set("port", port);
 //chamando rotas
 users(app);
 
-server.listen(3000, "localhost", function () {
+server.listen(3000, "192.168.43.158" || "localhost", function () {
   console.log("Aplication de nodejs " + process.pid + " iniciada");
 });
 

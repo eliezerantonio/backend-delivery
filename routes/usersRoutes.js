@@ -2,8 +2,8 @@ const UsersController = require("../controllers/usersController");
 
 module.exports = (app) => {
   //GET USERS
-  app.get("/api/users", UsersController.getAll);
+  app.get("/api/users/getAll", UsersController.getAll);
 
   //POST USERS
-  app.post("/api/users", UsersController.register);
+  app.post("/api/users/create", UsersController.register);
 };
