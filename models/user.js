@@ -47,11 +47,20 @@ User.create = (user) => {
     new Date(),
   ]);
 };
+
 User.findById = async (id, callback) => {
   const sql = `
 SELECT id,email,name,lastname,image,password,session_token FROM users WHERE id =$1`;
 
   const user = await db.oneOrNone(sql, id);
+  callback(null, user);
+};
+
+User.findByEmail = async (email) => {
+  const sql = `
+SELECT id,email,name,lastname,image,password,session_token FROM users WHERE email =$1`;
+
+  const user = await db.oneOrNone(sql, email);
   callback(null, user);
 };
 module.exports = User;
