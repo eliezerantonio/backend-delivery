@@ -38,3 +38,4 @@ module.exports = {
   app: app,
   server: server,
 };
+//source pgadmin4/bin/activate

@@ -14,8 +14,8 @@ User.create = (user) => {
     .createHash("md5")
     .update(user.password)
     .digest("hex");
-	user.password = myPasswordHashed;
-	
+  user.password = myPasswordHashed;
+
   const sql = `INSERT INTO users(
     email,
 	name,
@@ -47,5 +47,11 @@ User.create = (user) => {
     new Date(),
   ]);
 };
+User.findById = async (id, callback) => {
+  const sql = `
+SELECT id,email,name,lastname,image,password,session_token FROM users WHERE id =$1`;
 
+  const user = await db.oneOrNone(sql, id);
+  callback(null, user);
+};
 module.exports = User;
