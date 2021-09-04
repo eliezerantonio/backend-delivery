@@ -31,4 +31,16 @@ module.exports = {
         .json({ success: false, message: "Erro fazer o registro" });
     }
   },
+
+  async login(req, res, next) {
+    try {
+      const { email, password } = req.body;
+      
+    } catch (error) {
+      console.log(`Error" ${error}`);
+      return res
+        .status(501)
+        .json({ success: false, message: "Erro ao fazer login", error: error });
+    }
+  },
 };
