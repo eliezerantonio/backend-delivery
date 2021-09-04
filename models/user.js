@@ -60,7 +60,20 @@ User.findByEmail = async (email) => {
   const sql = `
 SELECT id,email,name,lastname,image,password,session_token FROM users WHERE email =$1`;
 
-  const user = await db.oneOrNone(sql, email);
-  callback(null, user);
+  return db.oneOrNone(sql, email);
 };
+
+User.isPasswordMatched = (userPassword, hash) => {
+  const myPasswordHashed = crypto
+    .createHash("md5")
+    .update(userPassword)
+    .digest("hex");
+
+  if (myPasswordHashed === hash) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 module.exports = User;

@@ -1,5 +1,6 @@
 const User = require("../models/user");
-
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 module.exports = {
   async getAll(req, res, next) {
     try {
@@ -35,7 +36,43 @@ module.exports = {
   async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      
+      //buscando usuarip
+      const myUser = await User.findByEmail(email);
+      //verificando se usuario existe
+
+      console.log(myUser);
+      if (!myUser) {
+        return res
+          .status(401)
+          .json({ success: false, message: "Usuario nao encontrado" });
+      }
+      //comparando senha
+      if (User.isPasswordMatched(password, myUser.password)) {
+        //criar token dest usuariosc
+        const token = jwt.sign(
+          { id: myUser.id, email: myUser.email },
+          keys.secretOrKey,
+          {
+            expiresIn: "1h",
+          }
+        );
+
+        const data = {
+          id: myUser.id,
+          name: myUser.name,
+          lastName: myUser.lastName,
+          email: myUser.email,
+          image: myUser.image,
+          phone: myUser.phone,
+          secretOrKey: `JWT ${token}`,
+        };
+
+        return res.status(201).json({ success: true, data: data });
+      } else {
+        return res
+          .status(401)
+          .json({ success: false, message: "Senha incorreta" });
+      }
     } catch (error) {
       console.log(`Error" ${error}`);
       return res
