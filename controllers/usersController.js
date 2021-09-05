@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
+const Role = require("../models/role");
+
 module.exports = {
   async getAll(req, res, next) {
     try {
@@ -20,6 +22,8 @@ module.exports = {
       const user = req.body;
 
       const data = await User.create(user);
+
+      await Role.create(data.id, 1); ///regra default
 
       return res.status(201).json({
         success: true,
