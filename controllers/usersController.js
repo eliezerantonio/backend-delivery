@@ -70,6 +70,7 @@ module.exports = {
           image: myUser.image,
           phone: myUser.phone,
           session_token: `JWT ${token}`,
+          roles:myUser.roles
         };
 
         return res.status(201).json({ success: true, data: data });
