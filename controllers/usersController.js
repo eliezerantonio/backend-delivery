@@ -18,8 +18,9 @@ module.exports = {
   async register(req, res, next) {
     try {
       const user = req.body;
-      console.log(user);
+
       const data = await User.create(user);
+
       return res.status(201).json({
         success: true,
         message: "Registro realizado com sucesso",
@@ -64,7 +65,7 @@ module.exports = {
           email: myUser.email,
           image: myUser.image,
           phone: myUser.phone,
-          secretOrKey: `JWT ${token}`,
+          session_token: `JWT ${token}`,
         };
 
         return res.status(201).json({ success: true, data: data });
