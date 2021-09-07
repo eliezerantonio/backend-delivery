@@ -4,6 +4,16 @@ const http = require("http");
 const server = http.createServer(app);
 const cors = require("cors");
 const logger = require("morgan");
+const multer = require("multer");
+const admin = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey");
+
+/*
+inicializar fireabse admin
+*/
+admin.initializeApp({ credentials: admin.credential.cert(serviceAccount) });
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 const port = process.env.PORT || 3000;
 app.use(logger("dev"));
@@ -21,7 +31,7 @@ const users = require("./routes/usersRoutes");
 app.set("port", port);
 
 //chamando rotas
-users(app);
+users(app, upload);
 
 server.listen(3000, "192.168.43.158" || "localhost", function () {
   console.log("Aplication de nodejs " + process.pid + " iniciada");

@@ -2,6 +2,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 const Role = require("../models/role");
+const storage = require("../utils/cloud_storage");
 
 module.exports = {
   async getAll(req, res, next) {
@@ -70,7 +71,7 @@ module.exports = {
           image: myUser.image,
           phone: myUser.phone,
           session_token: `JWT ${token}`,
-          roles:myUser.roles
+          roles: myUser.roles,
         };
 
         return res.status(201).json({ success: true, data: data });
@@ -84,6 +85,34 @@ module.exports = {
       return res
         .status(501)
         .json({ success: false, message: "Erro ao fazer login", error: error });
+    }
+  },
+  async registerWithImage(req, res, next) {
+    try {
+      const user = JSON.parse(req.body.user);
+
+      const files = req.files;
+      if (files.length > 0) {
+        const pathImage = `image_${Date.now}`; //nome do arquivo a armazenar
+        const url = await storage(files[0], pathImage);
+        if (url != null && url.undefined) {
+          user.image = url;
+        }
+      }
+      const data = await User.create(user);
+
+      await Role.create(data.id, 1); ///regra default
+
+      return res.status(201).json({
+        success: true,
+        message: "Registro realizado com sucesso",
+        data: data.id,
+      });
+    } catch (error) {
+      console.log(`Error: ${error}`);
+      return res
+        .status(501)
+        .json({ success: false, message: "Erro fazer o registro" });
     }
   },
 };
