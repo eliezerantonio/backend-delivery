@@ -65,7 +65,7 @@ module.exports = {
         const data = {
           id: myUser.id,
           name: myUser.name,
-          lastName: myUser.lastName,
+          lastname: myUser.lastname,
           email: myUser.email,
           image: myUser.image,
           phone: myUser.phone,
