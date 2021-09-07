@@ -93,12 +93,14 @@ module.exports = {
 
       const files = req.files;
       if (files.length > 0) {
-        const pathImage = `image_${Date.now}`; //nome do arquivo a armazenar
+        const pathImage = `image_${Date.now()}`; //nome do arquivo a armazenar
         const url = await storage(files[0], pathImage);
-        if (url != null && url.undefined) {
+        if (url != null && url != undefined) {
           user.image = url;
         }
       }
+
+    
       const data = await User.create(user);
 
       await Role.create(data.id, 1); ///regra default

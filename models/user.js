@@ -10,6 +10,8 @@ User.getAll = () => {
 };
 
 User.create = (user) => {
+
+	console.log(user);
   const myPasswordHashed = crypto
     .createHash("md5")
     .update(user.password)
