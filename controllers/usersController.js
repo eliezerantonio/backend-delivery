@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 const Role = require("../models/role");
 const storage = require("../utils/cloud_storage");
+const { findByUserId } = require("../models/user");
 
 module.exports = {
   async getAll(req, res, next) {
@@ -15,6 +16,19 @@ module.exports = {
       return res
         .status(501)
         .json({ success: false, message: "Erro ao buscar usuarios" });
+    }
+  },
+  async findByUserId(req, res, next) {
+    try {
+      const id = req.params.id;
+      const data = await User.findByUserId(id);
+
+      return res.status(200).json(data);
+    } catch (error) {
+      console.log(`Errror: ${error}`);
+      return res
+        .status(501)
+        .json({ success: false, message: "Erro ao buscar usuario" });
     }
   },
 

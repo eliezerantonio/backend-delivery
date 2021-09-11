@@ -3,6 +3,11 @@ const UsersController = require("../controllers/usersController");
 module.exports = (app, upload) => {
   //GET USERS
   app.get("/api/users/getAll", UsersController.getAll);
+  //Busca
+
+  //GET USERS BY ID
+  app.get("/api/users/findById/:id", UsersController.findByUserId);
+  //Busca
 
   //POST USERS
   app.post(
@@ -15,5 +20,9 @@ module.exports = (app, upload) => {
   app.post("/api/users/login", UsersController.login);
 
   //update
-  app.put("/api/users/update",upload.array("image",1), UsersController.update);
+  app.put(
+    "/api/users/update",
+    upload.array("image", 1),
+    UsersController.update
+  );
 };
