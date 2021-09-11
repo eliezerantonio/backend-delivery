@@ -10,8 +10,7 @@ User.getAll = () => {
 };
 
 User.create = (user) => {
-
-	console.log(user);
+  console.log(user);
   const myPasswordHashed = crypto
     .createHash("md5")
     .update(user.password)
@@ -55,7 +54,7 @@ User.create = (user) => {
 
 User.findById = async (id, callback) => {
   const sql = `
-SELECT id,email,name,lastname,image,password,session_token FROM users WHERE id =$1`;
+SELECT id,email,name,lastname,image,phone,password,session_token FROM users WHERE id =$1`;
 
   const user = await db.oneOrNone(sql, id);
   callback(null, user);
@@ -69,6 +68,7 @@ SELECT
 	U.name,
 	U.lastname,
 	U.image,
+	U.phone,
 	U.password,
 	U.session_token,
 	json_agg(json_build_object(
@@ -106,6 +106,31 @@ User.isPasswordMatched = (userPassword, hash) => {
   } else {
     return false;
   }
+};
+
+User.update = (user) => {
+  const sql = `
+	UPDATE
+		users
+    SET
+		name=$2,
+		lastname=$3,
+		phone=$4,
+		image=$5,
+		updated_at=$6,
+	WHERE
+		id=$1	
+
+	`;
+
+  return db.none(sq, [
+    user.id,
+    user.name,
+    user.lasname,
+    user.phone,
+    user.image,
+    new Date(),
+  ]);
 };
 
 module.exports = User;

@@ -100,7 +100,6 @@ module.exports = {
         }
       }
 
-    
       const data = await User.create(user);
 
       await Role.create(data.id, 1); ///regra default
@@ -115,6 +114,32 @@ module.exports = {
       return res
         .status(501)
         .json({ success: false, message: "Erro fazer o registro" });
+    }
+  },
+  async update(req, res, next) {
+    try {
+      const user = JSON.parse(req.body.user);
+
+      const files = req.files;
+      if (files.length > 0) {
+        const pathImage = `image_${Date.now()}`; //nome do arquivo a armazenar
+        const url = await storage(files[0], pathImage);
+        if (url != null && url != undefined) {
+          user.image = url;
+        }
+      }
+
+      await User.update(user);
+
+      return res.status(201).json({
+        success: true,
+        message: "Atualizacao feita com sucesso",
+      });
+    } catch (error) {
+      console.log(`Error: ${error}`);
+      return res
+        .status(501)
+        .json({ success: false, message: "Erro fazer ao atualizar" });
     }
   },
 };
