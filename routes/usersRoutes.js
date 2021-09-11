@@ -1,18 +1,27 @@
 const UsersController = require("../controllers/usersController");
-
+const passport = require("passport");
 module.exports = (app, upload) => {
   //GET USERS
-  app.get("/api/users/getAll", UsersController.getAll);
+  app.get(
+    "/api/users/getAll",
+
+    UsersController.getAll
+  );
   //Busca
 
   //GET USERS BY ID
-  app.get("/api/users/findById/:id", UsersController.findByUserId);
+  app.get(
+    "/api/users/findById/:id",
+    passport.authenticate("jwt", { session: false }),
+    UsersController.findByUserId
+  );
   //Busca
 
   //POST USERS
   app.post(
     "/api/users/create",
     upload.array("image", 1),
+    passport.authenticate("jwt", { session: false }),
     UsersController.registerWithImage
   );
 

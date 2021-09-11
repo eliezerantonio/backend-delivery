@@ -168,4 +168,17 @@ User.update = (user) => {
   ]);
 };
 
+User.updateToken = (id, token) => {
+  const sql = `
+	UPDATE
+		users
+    SET
+		session_token=$2,
+		
+	WHERE
+		id=$1`;
+
+  return db.none(sql, [id, token, new Date()]);
+};
+
 module.exports = User;
