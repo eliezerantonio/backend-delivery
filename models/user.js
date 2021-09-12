@@ -169,6 +169,7 @@ User.update = (user) => {
 };
 
 User.updateToken = (id, token) => {
+	console.log(id, token);
   const sql = `
 	UPDATE
 		users

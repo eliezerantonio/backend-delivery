@@ -159,7 +159,7 @@ module.exports = {
 
   async logout(req, res, next) {
     try {
-      const { id } = req.body.id;
+      const { id } = req.body;
       await User.updateToken(id, null);
       return res
         .status(201)
