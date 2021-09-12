@@ -27,6 +27,7 @@ module.exports = (app, upload) => {
 
   //Login
   app.post("/api/users/login", UsersController.login);
+  app.post("/api/users/logout", UsersController.logout);
 
   //update
   app.put(
