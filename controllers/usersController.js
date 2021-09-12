@@ -73,7 +73,7 @@ module.exports = {
           { id: myUser.id, email: myUser.email },
           keys.secretOrKey,
           {
-            expiresIn: "1h",
+            expiresIn: 60 * 2,
           }
         );
 
@@ -154,6 +154,21 @@ module.exports = {
       return res
         .status(501)
         .json({ success: false, message: "Erro fazer ao atualizar" });
+    }
+  },
+
+  async logout(req, res, next) {
+    try {
+      
+    } catch (error) {
+      console.log("Error: ${error}");
+      return res
+        .status(501)
+        .json({
+          success: false,
+          message: "Erro ao fazer logout",
+          error: error,
+        });
     }
   },
 };

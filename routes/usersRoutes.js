@@ -31,6 +31,7 @@ module.exports = (app, upload) => {
   //update
   app.put(
     "/api/users/update",
+    passport.authenticate("jwt", { session: false }),
     upload.array("image", 1),
     UsersController.update
   );
