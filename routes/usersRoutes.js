@@ -20,8 +20,8 @@ module.exports = (app, upload) => {
   //POST USERS
   app.post(
     "/api/users/create",
-    upload.array("image", 1),
     passport.authenticate("jwt", { session: false }),
+    upload.array("image", 1),
     UsersController.registerWithImage
   );
 

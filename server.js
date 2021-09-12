@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
-app.use(passport.initialize);
+app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport")(passport);
 
