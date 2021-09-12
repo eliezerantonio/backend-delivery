@@ -152,7 +152,7 @@ User.update = (user) => {
 		lastname=$3,
 		phone=$4,
 		image=$5,
-		updated_at=$6,
+		updated_at=$6
 	WHERE
 		id=$1	
 
@@ -161,7 +161,7 @@ User.update = (user) => {
   return db.none(sql, [
     user.id,
     user.name,
-    user.lasname,
+    user.lastname,
     user.phone,
     user.image,
     new Date(),
