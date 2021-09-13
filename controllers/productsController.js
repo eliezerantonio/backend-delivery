@@ -34,7 +34,17 @@ module.exports = {
                 product.image3 = url;
               }
             }
+            await Product.update(product);
+            inserts = inserts + 1;
+
+            if (inserts == files.length) {
+              res.status(201).json({
+                success: true,
+                message: "Product cadastrado com sucesso",
+              });
+            }
           });
+          start();
         };
       } catch (error) {
         console.log(`Error ${error}`);
