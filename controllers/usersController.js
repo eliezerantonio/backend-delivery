@@ -73,7 +73,7 @@ module.exports = {
           { id: myUser.id, email: myUser.email },
           keys.secretOrKey,
           {
-            expiresIn: 60 * 2,
+            expiresIn: '1d',
           }
         );
 
