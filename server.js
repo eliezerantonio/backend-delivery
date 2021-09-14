@@ -33,11 +33,13 @@ Rotas
 
 const users = require("./routes/usersRoutes");
 const categories = require("./routes/categoriesRoutes");
+const products = require("./routes/productsRoutes");
 app.set("port", port);
 
 //chamando rotas
 users(app, upload);
 categories(app);
+products(app, upload)
 
 server.listen(3000, "192.168.43.158" || "localhost", function () {
   console.log("Aplication de nodejs " + process.pid + " iniciada");
