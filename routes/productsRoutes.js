@@ -9,4 +9,10 @@ module.exports = (app, upload) => {
     upload.array("image", 3),
     ProductsController.create
   );
+  app.get(
+    "/api/products/findByCategory/:idCategory",
+    passport.authenticate("jwt", { session: false }),
+    upload.array("image", 3),
+    ProductsController.findByCategory
+  );
 };
