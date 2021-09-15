@@ -14,4 +14,9 @@ Category.create = (category) => {
   ]);
 };
 
+Category.getAll = () => {
+  const sql = "SELECT id, name, description FROM categories ORDER BY name";
+  return db.manyOrNone(sql);
+};
+
 module.exports = Category;

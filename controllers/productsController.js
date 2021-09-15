@@ -29,8 +29,10 @@ module.exports = {
                 //image 1
                 product.image1 = url;
               } else if (inserts === 1) {
+
                 product.image2 = url;
               } else if (inserts === 2) {
+                  
                 product.image3 = url;
               }
             }
