@@ -8,6 +8,8 @@ module.exports = {
     let product = JSON.parse(req.body.product);
 
     const files = req.files;
+
+   
     let inserts = 0;
     if (files.length === 0) {
       return res.status(501).json({
@@ -29,10 +31,8 @@ module.exports = {
                 //image 1
                 product.image1 = url;
               } else if (inserts === 1) {
-
                 product.image2 = url;
               } else if (inserts === 2) {
-                  
                 product.image3 = url;
               }
             }
@@ -46,8 +46,8 @@ module.exports = {
               });
             }
           });
-          start();
         };
+        start();
       } catch (error) {
         console.log(`Error ${error}`);
 
