@@ -9,7 +9,6 @@ module.exports = {
 
     const files = req.files;
 
-   
     let inserts = 0;
     if (files.length === 0) {
       return res.status(501).json({
@@ -56,6 +55,22 @@ module.exports = {
           success: false,
         });
       }
+    }
+  },
+
+  async findByCategory(req, res, next) {
+    try {
+      const idCategory = req.params.idCategory; //client_id
+      const data = await Product.findByCategory(idCategory);
+
+      return res.status(201).json(data);
+    } catch (error) {
+      console.log(`Error ${error}`);
+
+      res.status(501).json({
+        message: `Erro ao buscar  produtos por categoria,${error}`,
+        success: false,
+      });
     }
   },
 };

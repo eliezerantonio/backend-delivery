@@ -1,7 +1,7 @@
 const db = require("../config/config");
 
 const Product = {};
-Product.findByCategory = (id_category) => {
+Product.findByCategory = (idCategory) => {
   const sql = `SELECT 
 	P.id,
 	P.name,
@@ -23,7 +23,7 @@ INNER JOIN
 
 
 	`;
-  return db.manyOrNone(sql, [id_category]);
+  return db.manyOrNone(sql, [idCategory]);
 };
 Product.create = (product) => {
   const sql =
