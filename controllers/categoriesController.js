@@ -8,7 +8,7 @@ module.exports = {
     } catch (error) {
       console.log(`Error ${error}`);
       return res.status(501).json({
-        message: "Errro ao buscaro todas categorias",
+        message: "Erro ao buscaro todas categorias",
         error: error,
         success: false,
       });

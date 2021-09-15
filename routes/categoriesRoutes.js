@@ -6,7 +6,7 @@ module.exports = (app) => {
   /*
   GET ALL
   */
-  app.post(
+  app.get(
     "/api/categories/getall",
     passport.authenticate("jwt", { session: false }),
     CategoriesController.getAll
