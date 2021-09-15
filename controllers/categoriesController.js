@@ -1,6 +1,19 @@
 const Category = require("../models/category");
 
 module.exports = {
+  async getAll(req, res, next) {
+    try {
+      const data = await Category.getAll();
+      return res.status(200).json(data);
+    } catch (error) {
+      console.log(`Error ${error}`);
+      return res.status(501).json({
+        message: "Errro ao buscaro todas categorias",
+        error: error,
+        success: false,
+      });
+    }
+  },
   async create(req, res, next) {
     try {
       const category = req.body;
