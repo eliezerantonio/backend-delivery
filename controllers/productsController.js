@@ -4,6 +4,7 @@ const storage = require("../utils/cloud_storage");
 const asyncForeach = require("../utils/async_foreach");
 
 module.exports = {
+
   async create(req, res, next) {
     let product = JSON.parse(req.body.product);
 
@@ -12,7 +13,7 @@ module.exports = {
     let inserts = 0;
     if (files.length === 0) {
       return res.status(501).json({
-        message: "Erro ao cadstrar produto, sem imagem",
+        message: "Erro ao cadastrar produto, sem imagem",
         success: false,
       });
     } else {
