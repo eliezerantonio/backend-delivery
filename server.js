@@ -34,11 +34,13 @@ Rotas
 const users = require("./routes/usersRoutes");
 const categories = require("./routes/categoriesRoutes");
 const products = require("./routes/productsRoutes");
+const address = require("./routes/addressRoutes");
 app.set("port", port);
 
 //chamando rotas
 users(app, upload);
 categories(app);
+address(app);
 products(app, upload);
 
 server.listen(3000, "192.168.81.3" || "localhost", function () {

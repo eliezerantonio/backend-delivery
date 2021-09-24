@@ -16,3 +16,5 @@ Address.create = (address) => {
     new Date(),
   ]);
 };
+
+module.exports = Address;
