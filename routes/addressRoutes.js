@@ -6,11 +6,11 @@ module.exports = (app) => {
   /*
   GET ALL
   */
-  //   app.get(
-  //     "/api/address/getall",
-  //     passport.authenticate("jwt", { session: false }),
-  //     AddressController.getAll
-  //   );
+  app.get(
+    "/api/address/findByUser/:id_user",
+    passport.authenticate("jwt", { session: false }),
+    AddressController.findByUser
+  );
 
   /**
      * 
