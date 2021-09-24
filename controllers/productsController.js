@@ -4,7 +4,6 @@ const storage = require("../utils/cloud_storage");
 const asyncForeach = require("../utils/async_foreach");
 
 module.exports = {
-
   async create(req, res, next) {
     let product = JSON.parse(req.body.product);
 
@@ -22,7 +21,7 @@ module.exports = {
 
         product.id = data.id;
 
-        const start = async () => {
+        const start = async () => { 
           await asyncForeach(files, async (file) => {
             const pathImage = `image_${Date.now()}`;
             const url = await storage(file, pathImage);
@@ -31,8 +30,10 @@ module.exports = {
                 //image 1
                 product.image1 = url;
               } else if (inserts === 1) {
+                //image 2
                 product.image2 = url;
               } else if (inserts === 2) {
+                //image 3
                 product.image3 = url;
               }
             }
