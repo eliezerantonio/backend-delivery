@@ -6,6 +6,7 @@ module.exports = {
       const address = req.body;
 
       const data = await Address.create(address);
+       console.log(`endereco id ${data.id}`);
       return res.status(201).json({
         success: true,
         message: `Endereco criado com sucesso `,

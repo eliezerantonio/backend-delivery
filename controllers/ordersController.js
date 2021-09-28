@@ -1,10 +1,18 @@
 const Order = require("../models/order");
-
+const OrderHasProducts = require("../models/order_has_products");
 module.exports = {
   async create(req, res, next) {
     try {
-      const order = req.body;
+      let order = req.body;
+      order.status = "PAGADO";
       const data = await Order.create(order);
+     
+
+      //percorrendo todos produtos selecioandos no pedido
+
+      for (const product of order.products) {
+        await OrderHasProducts.create(data.id, product.id, product.quantity);
+      }
 
       return res.status(201).json({
         success: true,

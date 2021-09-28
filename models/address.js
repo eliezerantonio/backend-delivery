@@ -19,7 +19,7 @@ Address.create = (address) => {
 
 Address.findByUser = (id_user) => {
   const sql =
-    "SELECT address.id_user, address.address, address.neighborhood, address.lat, address.lng FROM address WHERE id_user =$1";
+    "SELECT address.id, address.id_user, address.address, address.neighborhood, address.lat, address.lng FROM address WHERE id_user =$1";
 
   return db.manyOrNone(sql, id_user);
 };
